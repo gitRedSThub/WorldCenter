@@ -1,0 +1,16 @@
+name: WorldCenter
+version: '${project.version}'
+main: me.redst.worldcenter.WorldCenterPlugin
+api-version: '1.21'
+description: Makes eligible mobs naturally travel toward a configurable point.
+authors: [ _RedST ]
+
+commands:
+  worldcenter:
+    description: Manage WorldCenter.
+    usage: /worldcenter help
+
+permissions:
+  worldcenter.admin:
+    description: Allows the use of every /worldcenter command.
+    default: op

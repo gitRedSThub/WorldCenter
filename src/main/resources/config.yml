@@ -1,0 +1,81 @@
+traveling:
+  # Master switch. Turn this off and every mob goes back to behaving like vanilla.
+  enabled: true
+
+  force-ai:
+    # false: mobs only head for the destination when they have nothing better to do.
+    #        A zombie chasing a player keeps chasing. This is the sane setting.
+    # true:  traveling beats everything, combat included. Mobs still walk there on
+    #        their own legs, they are never teleported.
+    enabled: false
+
+  # How close a mob has to get before it stops caring, in chunks. 2.00 is 32 blocks.
+  # Only X and Z count, so a mob 10 blocks away but 200 blocks up counts as arrived.
+  # Range: 0.25 - 32.00
+  stop-distance-chunks: 2.00
+
+  # Mobs below this Y are ignored. Keeps cave mobs in the caves instead of marching
+  # them across your world. Nothing is ever pushed upward to reach it.
+  # Range: -2048.00 - 2048.00
+  minimum-y: 63.00
+
+  # Skip mobs that are on a scoreboard team. Useful when another plugin uses teams to
+  # mark mobs it owns. Teams are only read here, never changed.
+  ignore-teamed: true
+
+  # Skip pets: tamed wolves, cats, parrots, horses, donkeys and the rest.
+  ignore-owned: true
+
+  processing:
+    # Seconds between "should this mob be traveling?" checks, per mob. Raise it if
+    # you want the plugin doing even less. One second is already cheap.
+    # Range: 0.25 - 60.00
+    interval: 1.00
+
+    # Offsets each mob's check by a random amount so 500 of them don't all think on
+    # the same tick. Leave this on.
+    random-delay: true
+
+  pathfinding:
+    # Seconds before a traveling mob may ask for a new path. If it's still walking
+    # the one it already has, nothing happens.
+    # Range: 0.50 - 60.00
+    update-interval: 2.00
+
+    # How long a mob waits after failing to find a path. Walled in, stuck on a ledge,
+    # whatever. Without this it would hammer the pathfinder every tick.
+    # Range: 0.50 - 300.00
+    retry-delay: 5.00
+
+# These never travel. Use Minecraft's own names: ZOMBIE, SKELETON, CREEPER.
+# The defaults are here because walking them out of a village, a hive or a base is
+# the kind of thing people notice and complain about.
+blacklist:
+  - VILLAGER
+  - BEE
+  - IRON_GOLEM
+  - SHULKER
+  - CAT
+
+# One destination per world, and each world switches on and off by itself.
+# A world that isn't listed does nothing, so a brand new world won't quietly start
+# herding mobs. Add one with: /worldcenter set worlds <name> enabled true
+# Destinations are X and Z only. Mobs find their own way over normal ground.
+worlds:
+  world:
+    enabled: true
+    destination:
+      x: 0.00
+      z: 0.00
+
+  world_nether:
+    enabled: true
+    destination:
+      x: 0.00
+      z: 0.00
+
+  world_the_end:
+    enabled: false
+    destination:
+      x: 0.00
+      z: 0.00
